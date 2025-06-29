@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Float</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    .container {
+      border: 1px dashed #999;
+      padding: 10px;
+      margin-bottom: 30px;
+      overflow: hidden;
+    }
+
+    .box {
+      width: 200px;
+      height: 60px;
+      padding: 10px;
+      margin: 10px;
+      color: white;
+      font-weight: bold;
+      line-height: 60px;
+      text-align: center;
+    }
+
+    .float-left {
+      float: left;
+      background-color: #007bff;
+    }
+
+    .float-right {
+      float: right;
+      background-color: #28d745;
+    }
+
+    .float-none {
+      float: none;
+      background-color: #ff851b;
+    }
+
+    .float-inherit {
+      float: inherit;
+      background-color: #b000b5;
+    }
+
+    .clear {
+      clear: both;
+      border: 1px solid #999;
+      padding: 10px;
+      margin-top: 20px;
+    }
+
+    .link {
+      text-align: right;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .link a {
+      text-decoration: none;
+      color: #4b0082;
+    }
+  </style>
+</head>
+<body>
+  <div class="link"><a href="../index.html">На головну</a></div>
+  <h1>FLOAT</h1>
+
+  <div class="container">
+    <div class="box float-left">float: left</div>
+    <div class="box float-none">float: none</div>
+    <div class="box float-right">float: right</div>
+  </div>
+
+  <div class="box float-inherit">float: inherit</div>
+
+  <p class="clear">
+    Це абзац під блоками, який демонструє очищення обтікання. Властивість <code>clear: both;</code> прибирає вплив float.
+  </p>
+</body>
+</html>

@@ -1,0 +1,222 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+  font-family: 'Oswald', sans-serif;
+  src: url('Oswald/static/Oswald-Bold.ttf') format('truetype');
+}
+body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+}
+
+.row1, .row3 {
+    background-color: gold;
+    padding: 15px 20px;
+    align-items: center;
+}
+
+.row1 {
+    justify-content: space-between;
+}
+
+.row1 input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex: 0 1 300px;
+}
+
+.row2 {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    gap: 10px;
+}
+
+.block {
+    padding: 15px;
+    border: 1px solid #000;
+    overflow-y: auto;
+    flex: 1 1 200px;
+}
+
+.b2 { 
+  font-family: "UoqMunThenKhung", serif;
+    background-color: #4d88ff; 
+    color: white; 
+}
+
+.b3 { 
+  font-family: "UoqMunThenKhung", serif;
+    background-color: #e06666; 
+    transform: rotate(-1deg); 
+}
+
+.b4 { 
+    background-color: #eee; 
+}
+
+.b5 { 
+    background-color: #93c47d; 
+}
+
+.b6 {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.scroll-content {
+    height: 200%;
+}
+
+@media (max-width: 768px) {
+    .row1 {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .row1 input {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+    
+    .block {
+        flex: 1 1 100%;
+    }
+    
+    .b3 {
+          font-family: "Oswald", sans-serif;
+        transform: none;
+    }
+}
+
+@media print {
+    .row1, .row3 {
+        background-color: white !important;
+        border-bottom: 1px solid #000;
+    }
+    
+    .row1 input {
+        display: none;
+    }
+    
+    .block {
+        background-color: white !important;
+        color: black !important;
+        border: 1px solid #000;
+        page-break-inside: avoid;
+    }
+    
+    .scroll-content {
+        height: auto;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .block {
+        min-height: 250px;
+    }
+}
+
+.demo-attr {
+  padding: 20px;
+  margin: 30px auto;
+  width: 300px;
+  background-color: #f0f8ff;
+  border: 1px solid #4682b4;
+  position: relative;
+  text-align: center;
+}
+
+.demo-attr:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px;
+  background-color: #333;
+  color: white;
+  border-radius: 4px;
+  white-space: nowrap;
+  margin-bottom: 10px;
+}
+
+.demo-calc {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.box {
+  padding: 15px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+.calc-box1 {
+  width: calc(100% - 100px);
+  background-color: #4d88ff;
+}
+
+.calc-box2 {
+  height: calc((100vh - 200px) / 3);
+  background-color: #e06666;
+}
+
+.calc-box3 {
+  font-size: calc(16px + 1vw);
+  background-color: #93c47d;
+}
+
+.combined {
+  width: calc(200px * attr(data-multiplier number, 1));
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #ffd700;
+  text-align: center;
+  font-weight: bold;
+  border: 2px solid #daa520;
+}
+
+@media (max-width: 768px) {
+  .calc-box1 {
+    width: calc(100% - 50px);
+  }
+  
+  .calc-box2 {
+    height: calc((100vh - 100px) / 3);
+  }
+}
+.uoqmunthenkhung-regular {
+  font-family: "UoqMunThenKhung", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+

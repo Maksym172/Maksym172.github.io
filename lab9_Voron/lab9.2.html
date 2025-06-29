@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Демонстрація attr() та calc()</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="demo-attr" data-tooltip="Це підказка з атрибута data-tooltip">
+        Наведіть курсор, щоб побачити підказку з attr()
+    </div>
+
+    <div class="demo-calc">
+        <div class="box calc-box1">Ширина: 100% - 100px</div>
+        <div class="box calc-box2">Висота: (100vh - 200px) / 3</div>
+        <div class="box calc-box3">Розмір шрифту: 16px + 1vw</div>
+    </div>
+
+    <div class="combined" data-multiplier="3">
+        Розмір цього блоку обчислюється за допомогою calc() та attr()
+    </div>
+</body>
+</html>

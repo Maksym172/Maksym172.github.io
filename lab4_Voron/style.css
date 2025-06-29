@@ -1,0 +1,64 @@
+/* Загальний фон сторінки */
+body {
+  background-color: white;
+  background-image: url("./ramka.gif");
+  background-repeat: repeat-y;
+  background-attachment: scroll; /* щоб фон рухався разом із прокруткою */
+  background-position: left;
+  margin: 0;
+  padding: 0;
+}
+
+/* Заголовки */
+h4 {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+h4.inner {
+  font-style: italic;
+}
+
+/* Обидва блоки */
+.column1, .column2 {
+  position: absolute;
+  padding: 10px;
+  height: 120%;
+  overflow: auto;
+  text-indent: 15px;
+  border: double 3px red;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(2px); /* трохи прозорості для ефекту "переливання" */
+}
+
+/* Перший блок */
+.column1 {
+  width: 600px;
+  top: 100px;
+  left: 50px;
+
+  background-image: url("./bg_menu.gif");
+  background-repeat: repeat-x;
+  background-position: center;
+  background-attachment: fixed;
+
+  background-color: rgba(255, 165, 0, 0.83);
+
+}
+
+/* Другий блок */
+.column2 {
+  width: 400px;
+  top: 100px;
+  left: 680px;
+
+  background-image: url("./bg_menu.gif");
+  background-repeat: repeat-x;
+  background-position: top;
+  background-attachment: scroll;
+  background-attachment: fixed;
+
+  background-color: rgba(255, 165, 0, 0.83);
+
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>z-index</title>
+  <a style="display: block; text-align: right" href="../index.html">На головну</a>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 40px;
+      background-color: #f5f5f5;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .wrapper {
+      position: relative;
+      width: 350px;
+      height: 350px;
+      margin: 0 auto;
+      border: 3px dashed #bbb;
+      background: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .box {
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      text-align: center;
+      line-height: 160px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      border: 3px solid white;
+      transition: transform 0.2s ease;
+    }
+
+    .box:hover {
+      transform: scale(1.05);
+    }
+
+    .red {
+      background-color: #e53935; /* насичений червоний */
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    .green {
+      background-color: #43a047; /* насичений зелений */
+      top: 40px;
+      left: 40px;
+      z-index: 2;
+    }
+
+    .blue {
+      background-color: #1e88e5; /* насичений синій */
+      top: 80px;
+      left: 80px;
+      z-index: 3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Властивість <code>z-index</code></h1>
+
+  <div class="wrapper">
+    <div class="box red">z-index: 1</div>
+    <div class="box green">z-index: 2</div>
+    <div class="box blue">z-index: 3</div>
+  </div>
+</body>
+</html>

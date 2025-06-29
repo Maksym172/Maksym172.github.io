@@ -1,0 +1,154 @@
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: sans-serif;
+}
+
+.container {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 15% 70% 15%;
+}
+
+.row1, .row3 {
+  display: grid;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(7, 48, 255);
+  padding: 0 10px;
+  color: white;
+}
+
+.row1 input {
+  padding: 5px;
+}
+
+.row2 {
+  overflow: hidden;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 10px;
+}
+
+.block {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid black;
+  overflow-y: auto;
+  background-color: #ccc;
+  transition: all 0.3s ease;
+}
+
+.b2 { background-color: #4d88ff; color: white; }
+.b3 { background-color: #314772; transform: rotate(-1deg); }
+.b4 { background-color: #314772; }
+.b5 { background-color: #4d88ff; }
+
+.b6 {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.scroll-content {
+  height: 200%;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-rows: 10% 80% 10%;
+  }
+  
+  .grid-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+  }
+  
+  .block {
+    font-size: 14px;
+    padding: 8px;
+  }
+  
+  .b3 {
+    transform: none;
+  }
+  
+  .row1, .row3 {
+    flex-direction: column;
+    padding: 5px;
+    text-align: center;
+  }
+  
+  .row1 span {
+    margin-top: 5px;
+    font-size: 14px;
+  }
+  
+  .row1 input {
+    width: 100%;
+  }
+}
+
+
+@media print {
+  .container {
+    height: auto;
+    grid-template-rows: auto auto auto;
+  }
+  
+  .row1, .row3 {
+    background-color: white !important;
+    color: black !important;
+    border-bottom: 1px solid black;
+  }
+  
+  .block {
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid black;
+    page-break-inside: avoid;
+  }
+  
+  .grid-layout {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .row1 input {
+    display: none;
+  }
+  
+  .b3 {
+    transform: none;
+  }
+  
+  .scroll-content {
+    height: auto;
+  }
+}
+
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .block {
+    font-size: 18px;
+    padding: 15px;
+  }
+  
+  .row1, .row3 {
+    padding: 0 20px;
+  }
+}

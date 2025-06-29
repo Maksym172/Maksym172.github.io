@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Position</title>
+  <a style="display: block; text-align: right" href="../index.html">На головну</a>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+
+    h2 {
+      margin-top: 40px;
+    }
+
+    .box {
+      width: 180px;
+      height: 100px;
+      background-color: lightblue;
+      margin: 10px 0;
+      padding: 10px;
+      border: 2px solid #000;
+      text-align: center;
+      line-height: 100px;
+    }
+
+    .static {
+      position: static;
+      background-color: #e6f7ff;
+    }
+
+    .relative {
+      position: relative;
+      top: 20px;
+      left: 20px;
+      background-color: #cceeff;
+    }
+
+    .absolute-container {
+      position: relative;
+      height: 200px;
+      border: 2px dashed grey;
+      margin: 20px 0;
+    }
+
+    .absolute {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: #99ddff;
+    }
+
+    .fixed {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background-color: #66ccff;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <h1>Властивість position</h1>
+
+  <h2>position: static</h2>
+  <div class="box static">static</div>
+
+  <h2>position: relative</h2>
+  <div class="box relative">relative</div>
+
+  <h2>position: absolute (всередині relative)</h2>
+  <div class="absolute-container">
+    <div class="box absolute">absolute</div>
+  </div>
+
+  <h2>position: fixed</h2>
+  <div class="box fixed">fixed</div>
+</body>
+</html>
