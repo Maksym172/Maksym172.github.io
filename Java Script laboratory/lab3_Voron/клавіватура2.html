@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Екранна клавіатура з Alt+Shift</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    #display {
+      width: 90%; height: 50px; font-size: 20px; margin-bottom: 15px; padding: 5px;
+    }
+    #keyboard button {
+      margin: 3px; padding: 10px 15px; font-size: 16px; cursor: pointer;
+    }
+    .row { margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Екранна клавіатура</h2>
+  <textarea id="display" readonly></textarea><br>
+  <div id="keyboard"></div>
+  <button onclick="clearDisplay()">Очистити поле</button>
+  <button onclick="toggleLayout()">Alt+Shift</button>
+
+  <script>
+    let numbers = ["1","2","3","4","5","6","7","8","9","0"];
+
+    let lettersUA = [
+      "а","б","в","г","ґ","д","е","є","ж","з",
+      "и","і","ї","й","к","л","м","н","о","п",
+      "р","с","т","у","ф","х","ц","ч","ш","щ",
+      "ь","ю","я"
+    ];
+
+    let lettersEN = [
+      "a","b","c","d","e","f","g","h","i","j",
+      "k","l","m","n","o","p","q","r","s","t",
+      "u","v","w","x","y","z"
+    ];
+
+    let currentLayout = "UA";
+
+    function createKeyboard() {
+      let keyboard = document.getElementById("keyboard");
+      let rows = "";
+
+      rows += "<div class='row'>";
+      numbers.forEach(n => {
+        rows += `<button onclick="addSymbol('${n}')">${n}</button>`;
+      });
+      rows += "</div>";
+
+      let letters = (currentLayout === "UA") ? lettersUA : lettersEN;
+
+      for (let i = 0; i < letters.length; i++) {
+        if (i % 11 === 0) rows += "<div class='row'>";
+        rows += `<button onclick="addSymbol('${letters[i]}')">${letters[i]}</button>`;
+        if (i % 11 === 10 || i === letters.length - 1) rows += "</div>";
+      }
+
+      keyboard.innerHTML = rows;
+    }
+
+    function addSymbol(symbol) {
+      document.getElementById("display").value += symbol;
+    }
+
+    function clearDisplay() {
+      document.getElementById("display").value = "";
+    }
+
+    function toggleLayout() {
+      currentLayout = (currentLayout === "UA") ? "EN" : "UA";
+      createKeyboard();
+    }
+
+    window.onload = createKeyboard;
+  </script>
+</body>
+</html>

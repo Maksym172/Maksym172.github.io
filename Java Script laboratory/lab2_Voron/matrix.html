@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <title>Завдання 3 — Матриця (варіант 17)</title>
+  <style>
+    body{font-family:system-ui, sans-serif; background:#0b1220; color:#e5e7eb; padding:24px; margin:0}
+    .top-link{position:absolute; top:12px; right:16px; text-decoration:none; color:#60a5fa; font-weight:600}
+    .top-link:hover{text-decoration:underline}
+    .panel{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:16px}
+    input[type="number"]{width:120px; padding:8px; border-radius:10px; border:1px solid #334155; background:#0f172a; color:#e5e7eb}
+    button{padding:10px 14px; border:none; border-radius:10px; cursor:pointer; background:#3b82f6; color:white; font-weight:600}
+    table{border-collapse:collapse; margin-top:14px}
+    td{padding:4px}
+    input.cell{width:70px; padding:8px; border-radius:8px; border:1px solid #334155; background:#0f172a; color:#e5e7eb; text-align:center}
+    .result{margin-top:14px; font-weight:700}
+  </style>
+</head>
+<body>
+  <a class="top-link" href="../index.html">На головну</a>
+
+  <h2>Матриця (варіант 17): A<sub>ij</sub> = -5j + 3i</h2>
+
+  <div class="panel">
+    <label>Кількість рядків: <input id="rows" type="number" min="1" value="5"></label>
+    <label>Кількість стовпців: <input id="cols" type="number" min="1" value="5"></label>
+    <button onclick="build()">Побудувати матрицю</button>
+    <button onclick="sumSecondRow()">Порахувати суму 2-го рядка</button>
+  </div>
+
+  <div id="matrix"></div>
+  <div id="out" class="result"></div>
+
+  <script>
+    let R=0, C=0;
+
+    // формула Aij = -5*j + 3*i
+    function formula(i,j){
+      return -5*j + 3*i;
+    }
+
+    function build(){
+      R = parseInt(document.getElementById('rows').value)||0;
+      C = parseInt(document.getElementById('cols').value)||0;
+      const wrap = document.getElementById('matrix');
+      if(R<=0||C<=0){ wrap.innerHTML = '<em>Вкажи додатні розміри.</em>'; return; }
+
+      let html = '<table>';
+      for(let i=1;i<=R;i++){
+        html += '<tr>';
+        for(let j=1;j<=C;j++){
+          const val = formula(i,j);
+          const id = `c_${i}_${j}`;
+          html += `<td><input class="cell" id="${id}" value="${val}" /></td>`;
+        }
+        html += '</tr>';
+      }
+      html += '</table>';
+      wrap.innerHTML = html;
+      document.getElementById('out').textContent = '';
+    }
+
+    function getCell(i,j){
+      const el = document.getElementById(`c_${i}_${j}`);
+      return el ? parseFloat(el.value) || 0 : 0;
+    }
+
+    function sumSecondRow(){
+      if(R<2){ document.getElementById('out').textContent = 'Другого рядка не існує.'; return; }
+      let sum = 0;
+      for(let j=1;j<=C;j++) sum += getCell(2,j);
+      document.getElementById('out').textContent = `Сума елементів 2-го рядка = ${sum}`;
+    }
+
+    // збудуємо початкову матрицю
+    build();
+  </script>
+</body>
+</html>

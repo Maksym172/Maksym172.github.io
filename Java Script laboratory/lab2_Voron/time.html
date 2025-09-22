@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <title>Завдання 1 — Годинник (var 7)</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      display:flex;
+      min-height:100vh;
+      align-items:center;
+      justify-content:center;
+      background:#0f172a;
+      color:#e2e8f0;
+      margin:0;
+    }
+    .card {
+      padding:28px 32px;
+      border-radius:18px;
+      background:#111827;
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
+      text-align:center;
+    }
+    .time { font-size:32px; letter-spacing:.5px; }
+    .label { opacity:.7; margin-bottom:10px; }
+
+    /* посилання у верхньому правому кутку */
+    .top-link {
+      position:absolute;
+      top:12px;
+      right:16px;
+      text-decoration:none;
+      color:#60a5fa;
+      font-weight:600;
+    }
+    .top-link:hover {
+      text-decoration:underline;
+    }
+  </style>
+</head>
+<body onload="startClock()">
+
+  <!-- посилання на головну -->
+  <a class="top-link" href="../index.html">На головну</a>
+
+  <div class="card">
+    <div class="label">Поточний час</div>
+    <div id="clock" class="time">—</div>
+  </div>
+
+  <script>
+    function pad(n){ return String(n).padStart(2,'0'); }
+    function formatNow(){
+      const d = new Date();
+      const year  = d.getFullYear();
+      const moun  = pad(d.getMonth()+1);
+      const day   = pad(d.getDate());
+      const hour  = pad(d.getHours());
+      const min   = pad(d.getMinutes());
+      const sec   = pad(d.getSeconds());
+      // формат для варіанта 7
+      return `${hour}/${min}/${sec}+${year}*${moun}*${day}`;
+    }
+    function startClock(){
+      const el = document.getElementById('clock');
+      const tick = ()=> el.textContent = formatNow();
+      tick();
+      setInterval(tick, 1000);
+    }
+  </script>
+</body>
+</html>

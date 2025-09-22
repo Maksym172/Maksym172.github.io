@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <title>Завдання 4 — console.log()</title>
+  <style>
+    body{font-family:system-ui, sans-serif; background:#0b1220; color:#e5e7eb; padding:24px; margin:0}
+    .top-link{position:absolute; top:12px; right:16px; text-decoration:none; color:#60a5fa; font-weight:600}
+    .top-link:hover{text-decoration:underline}
+    button{padding:10px 14px; border:none; border-radius:10px; cursor:pointer; background:#3b82f6; color:white; font-weight:600; margin:8px}
+    input{padding:6px; border-radius:8px; border:1px solid #334155; background:#0f172a; color:#e5e7eb; width:80px; margin:0 6px}
+    .row{margin-bottom:12px}
+  </style>
+</head>
+<body>
+  <a class="top-link" href="../index.html">На головну</a>
+
+  <h2>Дослідження роботи <code>console.log()</code></h2>
+
+  <div class="row">
+    <label>a: <input id="a" type="number" value="17"></label>
+    <label>b: <input id="b" type="number" value="5"></label>
+    <button onclick="printRemainder()">Остача a % b</button>
+    <button onclick="printIsDivisible()">a % b === 0 ?</button>
+  </div>
+
+  <div class="row">
+    <button onclick="printArrayFormats()">Приклад з масивом</button>
+  </div>
+
+  <p>👉 Відкрий <b>DevTools → Console</b> (F12) і натискай кнопки.</p>
+
+  <script>
+    // Вивід остачі від ділення
+    function printRemainder(){
+      const a = Number(document.getElementById('a').value);
+      const b = Number(document.getElementById('b').value);
+      console.log("Остача від ділення %d на %d = %d", a, b, a % b);
+    }
+
+    // Перевірка чи ділиться без остачі
+    function printIsDivisible(){
+      const a = Number(document.getElementById('a').value);
+      const b = Number(document.getElementById('b').value);
+      console.log("Чи %d ділиться на %d без остачі? %s", a, b, (a % b === 0));
+    }
+
+    // Приклад з масивом
+    function printArrayFormats(){
+      let arr = [10, 20, 30];
+      console.log("Значення масиву: %d, %d, %d", arr[0], arr[1], arr[2]);
+      console.log("Перший елемент масиву як рядок: %s", arr[0]);
+
+      // приклад з конкатенацією і комами
+      let a1 = 5;
+      console.log("a1="+a1);
+      console.log("a1=", a1);
+    }
+  </script>
+</body>
+</html>

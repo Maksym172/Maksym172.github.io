@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Слайдер зображень</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+    #slider { margin: 20px auto; }
+    img { max-width: 500px; max-height: 350px; border: 2px solid #444; border-radius: 8px; }
+    button { margin: 10px; padding: 10px 20px; font-size: 16px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>Слайдер зображень</h2>
+
+  <div id="slider">
+    <img id="image" src="" alt="Зображення">
+  </div>
+  <div>
+    <button onclick="prevImage()">⬅ Назад</button>
+    <button onclick="nextImage()">Вперед ➡</button>
+  </div>
+
+  <script>
+
+    let images = [
+      "images/1.jpg",  
+      "images/2.jpg",  
+      "images/3.jpg", 
+      "images/4.jpg" 
+    ];
+
+
+    let currentIndex = 0;
+
+    function showImage() {
+      document.getElementById("image").src = images[currentIndex];
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length; // циклічність
+      showImage();
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length; // циклічність
+      showImage();
+    }
+
+    // Показати перше зображення при завантаженні
+    window.onload = showImage;
+  </script>
+</body>
+</html>

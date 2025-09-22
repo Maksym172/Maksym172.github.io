@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Лабораторна робота №1 – Варіант 17</title>
+  <script>
+    // ===== Завдання 2 =====
+    function calculation() {
+      let x = 12;
+      let y = 5;
+      let z = 3; // значення для змінної z
+      let F = (x - y) / (2 * x * z);
+      alert("Результат F = " + F);
+    }
+
+    // ===== Завдання 3 =====
+    function showMessage(msg) {
+      document.getElementById("output").value = msg;
+    }
+
+    // ===== Завдання 4 =====
+    function calcBranching() {
+      let x = parseFloat(document.getElementById("t_x").value);
+      let y = parseFloat(document.getElementById("t_y").value);
+      let F;
+
+      if (x > 0 && y > 0) {
+        F = 2 * x + y;
+      } else if (x < 3 && y > 4) {
+        F = x * x + 2 * y * y;
+      } else {
+        F = Math.pow(x, 3);
+      }
+
+      document.getElementById("t_res4").value = F;
+    }
+  </script>
+</head>
+<body>
+  <!-- ===== Завдання 1 ===== -->
+  <section>
+    <h2>Завдання 1</h2>
+    <p>Це звичайний HTML абзац.</p>
+    <script>
+      document.write("Привіт! Мене звати Ворон Максим Миколайович,студенит групи ІПЗ-21")
+    </script>
+    <p>Знову звичайний HTML абзац.</p>
+    <form>
+      <input type="button" value="Показати інформацію"
+             onClick="alert('Я народився 18.10.2007 року в місті Івано-Франківськ')">
+    </form>
+  </section>
+
+  <hr>
+
+  <!-- ===== Завдання 2 ===== -->
+  <section>
+    <h2>Завдання 2</h2>
+    <form>
+      <input type="button" value="Обчислити" onClick="calculation()">
+    </form>
+  </section>
+
+  <hr>
+
+  <!-- ===== Завдання 3 ===== -->
+  <section>
+    <h2>Завдання 3</h2>
+    <form>
+      <p>Перше поле (onBlur):</p>
+      <input type="text" placeholder="Напиши щось і вийди з поля"
+             onBlur="showMessage('Подія onBlur: поле втратило фокус')"><br><br>
+
+      <p>Друге поле (onClick):</p>
+      <input type="text" placeholder="Клікни сюди"
+             onClick="showMessage('Подія onClick: клік по другому полю')"><br><br>
+
+      <p>Результат:</p>
+      <input type="text" id="output" readonly>
+    </form>
+  </section>
+
+  <hr>
+
+  <!-- ===== Завдання 4 ===== -->
+  <section>
+    <h2>Завдання 4</h2>
+    <form>
+      x = <input type="text" id="t_x" value="2"><br><br>
+      y = <input type="text" id="t_y" value="5"><br><br>
+      Результат F = <input type="text" id="t_res4" readonly><br><br>
+      <input type="button" value="Обчислити" onClick="calcBranching()">
+    </form>
+  </section>
+
+ <hr>
+
+ <!-- ===== Завдання 5 ===== -->
+<section>
+  <h2>Завдання 5</h2>
+  <form id="form5">
+    x = <input type="text" id="x5" value="2"><br><br>
+    y = <input type="text" id="y5" value="3"><br><br>
+    Результат F = <input type="text" id="res5" readonly><br><br>
+    <input type="button" value="Обчислити" onClick="calcSeries()">
+  </form>
+</section>
+
+<script>
+  function factorial(n) {
+    let f = 1;
+    for (let j = 1; j <= n; j++) f *= j;
+    return f;
+  }
+
+  function calcSeries() {
+    let x = parseFloat(document.getElementById("x5").value);
+    let y = parseFloat(document.getElementById("y5").value);
+    let sum = 0;
+
+    for (let i = 3; i <= 5; i++) {
+      let numerator = 2 * x * y - y * y + x;
+      let denominator = 3 * x * factorial(i);
+      let term = Math.pow(-1, i + 1) * (numerator / denominator);
+      sum += term;
+    }
+
+    document.getElementById("res5").value = sum;
+  }
+</script>
+</body>
+</html>

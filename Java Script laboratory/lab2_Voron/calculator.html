@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <title>Завдання 2 — Калькулятор</title>
+  <style>
+    *{box-sizing:border-box}
+    body{font-family:system-ui, sans-serif; display:flex; align-items:center; justify-content:center; min-height:100vh; background:#0b1220; color:#e5e7eb; margin:0}
+    .calc{width:340px; background:#111827; padding:16px; border-radius:18px; box-shadow:0 12px 28px rgba(0,0,0,.35)}
+    .screen{width:100%; height:64px; font:600 28px/64px ui-monospace, monospace; background:#0f172a; color:#f8fafc; border:none; border-radius:12px; text-align:right; padding:0 14px; margin-bottom:12px}
+    .grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px}
+    button{height:56px; border:none; border-radius:12px; font:600 18px system-ui; cursor:pointer; background:#1f2937; color:#e5e7eb}
+    button.op{background:#374151}
+    button.eq{background:#3b82f6; color:white}
+    button.wide{grid-column:span 2}
+
+    /* лінк у кутку */
+    .top-link{position:absolute; top:12px; right:16px; text-decoration:none; color:#60a5fa; font-weight:600}
+    .top-link:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <a class="top-link" href="../index.html">На головну</a>
+
+  <div class="calc">
+    <input class="screen" id="screen" placeholder="0" readonly />
+    <div class="grid">
+      <button class="op" onclick="clearAll()">AC</button>
+      <button class="op" onclick="backspace()">⌫</button>
+      <button class="op" onclick="append('%')">%</button>
+      <button class="op" onclick="append('/')">÷</button>
+
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+      <button class="op" onclick="append('*')">×</button>
+
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+      <button class="op" onclick="append('-')">−</button>
+
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+      <button class="op" onclick="append('+')">+</button>
+
+      <button class="wide" onclick="append('0')">0</button>
+      <button onclick="append('.')">.</button>
+      <button class="eq" onclick="evaluateExpr()">=</button>
+    </div>
+  </div>
+
+  <script>
+    const scr = document.getElementById('screen');
+    function append(ch){
+      if (scr.value.length>0 && /[+\-*/.%]$/.test(scr.value) && /[+\-*/.%]/.test(ch)) {
+        scr.value = scr.value.slice(0,-1) + ch;
+      } else {
+        scr.value += ch;
+      }
+    }
+    function clearAll(){ scr.value = ''; }
+    function backspace(){ scr.value = scr.value.slice(0,-1); }
+    function evaluateExpr(){
+      if(!scr.value) return;
+      try{
+        const sanitized = scr.value.replace(/[^0-9+\-*/.%()]/g,'');
+        const result = eval(sanitized);
+        scr.value = Number.isFinite(result) ? String(result) : 'Помилка';
+      }catch(e){
+        scr.value = 'Помилка';
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Завдання 7</title>
+  <script>
+    let product = ["Зошит", "Зарядка", "Зонт"];
+    let quantity = [105, 50, 75];
+    let cost = [26, 300, 120];
+    let selectedIndex = 0;
+
+    function fun1Select() {
+      selectedIndex = document.getElementById("select_product").selectedIndex;
+      document.getElementById("output_quantity2").value = quantity[selectedIndex];
+      document.getElementById("output_cost2").value = cost[selectedIndex];
+    }
+
+    function fun2Select() {
+      let total = quantity[selectedIndex] * cost[selectedIndex];
+      document.getElementById("total_sum2").value =
+        "Загальна сума: " + total + " грн";
+    }
+  </script>
+</head>
+<body>
+  <h2>Завдання 7</h2>
+  <form>
+    Виберіть товар:
+    <select id="select_product" onChange="fun1Select()">
+      <option>Зошит</option>
+      <option>Зарядка</option>
+      <option>Зонт</option>
+    </select><br><br>
+
+    Кількість: <input type="text" id="output_quantity2" readonly><br>
+    Вартість: <input type="text" id="output_cost2" readonly><br><br>
+
+    <input type="button" value="Загальна сума" onClick="fun2Select()"><br><br>
+    <input type="text" id="total_sum2" readonly>
+  </form>
+</body>
+</html>

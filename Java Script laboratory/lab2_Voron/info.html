@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <title>Завдання 5 — Методи консолі</title>
+  <style>
+    body{font-family:system-ui, sans-serif; background:#0b1220; color:#e5e7eb; padding:24px}
+    button{padding:10px 14px; border:none; border-radius:10px; cursor:pointer; background:#1f2937; color:#e5e7eb; font-weight:600; margin:6px 8px 0 0}
+    .group{margin-bottom:14px}
+    .tip{opacity:.8; margin-top:10px}
+  </style>
+</head>
+<body>
+  <h2>Дослідження методів консолі</h2>
+
+  <div class="group">
+    <button onclick="demoBasic()">info / warn / error</button>
+    <button onclick="demoDir()">dir / dirxml</button>
+  </div>
+
+  <div class="group">
+    <button onclick="demoTiming()">time / timeEnd</button>
+    <button onclick="demoProfile()">profile / profileEnd</button>
+  </div>
+
+  <div class="group">
+    <button onclick="demoAssert(true)">assert(true)</button>
+    <button onclick="demoAssert(false)">assert(false)</button>
+  </div>
+
+  <p class="tip">Відкрий DevTools → Console і натискай кнопки.</p>
+
+  <script>
+    function demoBasic(){
+      console.info("ℹ️ Інформаційне повідомлення");
+      console.warn("⚠️ Попередження (warn)");
+      console.error("⛔ Помилка (error)");
+    }
+
+    function demoDir(){
+      const obj = {id:17, name:"Lab 2", nested:{ok:true, items:[1,2,3]}};
+      const el = document.createElement('div');
+      el.innerHTML = "<strong>Привіт</strong> <em>з dirxml</em>";
+      console.dir(obj);     // інспекція JS-об'єкта
+      console.dirxml(el);   // XML/DOM-представлення елемента
+    }
+
+    function demoTiming(){
+      console.time("calc");
+      // штучне навантаження
+      let s = 0;
+      for(let i=0;i<5e6;i++) s += i;
+      console.timeEnd("calc");
+    }
+
+    function demoProfile(){
+      try{
+        console.profile("my-profile");
+        // невелика робота, щоб було що профілювати
+        const arr = Array.from({length:50000}, (_,i)=>i*i);
+        arr.sort((a,b)=>b-a);
+      }finally{
+        // profile може бути недоступний поза DevTools — закінчуємо безпечно
+        if (console.profileEnd) console.profileEnd("my-profile");
+      }
+    }
+
+    function demoAssert(flag){
+      console.assert(flag, "Умова assert === false → виводимо це повідомлення. Поточне значення:", flag);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Завдання 6</title>
+  <script>
+    let product = ["Зошит", "Зарядка", "Зонт"]; // товари на букву З
+    let quantity = [105, 50, 75];
+    let cost = [26, 300, 120];
+    let selectedIndex = -1; // глобальна змінна для збереження вибраного товару
+
+    function fun1() {
+      let name = document.getElementById("name_cont").value;
+      selectedIndex = -1;
+
+      for (let i = 0; i < product.length; i++) {
+        if (product[i].toLowerCase() === name.toLowerCase()) {
+          selectedIndex = i;
+          document.getElementById("output_quantity").value = quantity[i];
+          document.getElementById("output_cost").value = cost[i];
+          return;
+        }
+      }
+      alert("Товар не знайдено!");
+    }
+
+    function fun2() {
+      if (selectedIndex !== -1) {
+        let total = quantity[selectedIndex] * cost[selectedIndex];
+        document.getElementById("total_sum").value =
+          "Загальна сума: " + total + " грн";
+      } else {
+        alert("Спочатку введіть правильний товар!");
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2>Завдання 6</h2>
+  <form>
+    Введіть назву товару: 
+    <input type="text" id="name_cont"><br><br>
+
+    <input type="button" value="Наявна кількість і вартість" onClick="fun1()"><br><br>
+
+    Кількість: <input type="text" id="output_quantity" readonly><br>
+    Вартість: <input type="text" id="output_cost" readonly><br><br>
+
+    <input type="button" value="Загальна сума" onClick="fun2()"><br><br>
+    <input type="text" id="total_sum" readonly>
+  </form>
+</body>
+</html>
