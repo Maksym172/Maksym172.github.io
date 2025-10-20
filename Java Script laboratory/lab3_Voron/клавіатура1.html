@@ -39,7 +39,6 @@
       });
       rows += "</div>";
 
-      // три ряди букв (по 11 у рядку максимум)
       for (let i = 0; i < lettersUA.length; i++) {
         if (i % 11 === 0) rows += "<div class='row'>";
         rows += `<button onclick="addSymbol('${lettersUA[i]}')">${lettersUA[i]}</button>`;

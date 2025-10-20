@@ -38,16 +38,16 @@
     }
 
     function nextImage() {
-      currentIndex = (currentIndex + 1) % images.length; // циклічність
+      currentIndex = (currentIndex + 1) % images.length; 
       showImage();
     }
 
     function prevImage() {
-      currentIndex = (currentIndex - 1 + images.length) % images.length; // циклічність
+      currentIndex = (currentIndex - 1 + images.length) % images.length; 
       showImage();
     }
 
-    // Показати перше зображення при завантаженні
+  
     window.onload = showImage;
   </script>
 </body>

@@ -41,13 +41,12 @@
       const obj = {id:17, name:"Lab 2", nested:{ok:true, items:[1,2,3]}};
       const el = document.createElement('div');
       el.innerHTML = "<strong>Привіт</strong> <em>з dirxml</em>";
-      console.dir(obj);     // інспекція JS-об'єкта
-      console.dirxml(el);   // XML/DOM-представлення елемента
+      console.dir(obj);
+      console.dirxml(el);
     }
 
     function demoTiming(){
       console.time("calc");
-      // штучне навантаження
       let s = 0;
       for(let i=0;i<5e6;i++) s += i;
       console.timeEnd("calc");
@@ -56,11 +55,9 @@
     function demoProfile(){
       try{
         console.profile("my-profile");
-        // невелика робота, щоб було що профілювати
         const arr = Array.from({length:50000}, (_,i)=>i*i);
         arr.sort((a,b)=>b-a);
       }finally{
-        // profile може бути недоступний поза DevTools — закінчуємо безпечно
         if (console.profileEnd) console.profileEnd("my-profile");
       }
     }

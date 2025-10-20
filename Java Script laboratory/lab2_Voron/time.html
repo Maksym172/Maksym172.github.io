@@ -24,7 +24,6 @@
     .time { font-size:32px; letter-spacing:.5px; }
     .label { opacity:.7; margin-bottom:10px; }
 
-    /* посилання у верхньому правому кутку */
     .top-link {
       position:absolute;
       top:12px;
@@ -40,7 +39,6 @@
 </head>
 <body onload="startClock()">
 
-  <!-- посилання на головну -->
   <a class="top-link" href="../index.html">На головну</a>
 
   <div class="card">
@@ -58,7 +56,6 @@
       const hour  = pad(d.getHours());
       const min   = pad(d.getMinutes());
       const sec   = pad(d.getSeconds());
-      // формат для варіанта 7
       return `${hour}/${min}/${sec}+${year}*${moun}*${day}`;
     }
     function startClock(){

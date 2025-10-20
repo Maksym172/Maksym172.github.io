@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Лабораторна робота №4 — Тестування</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 20px; }
+h2 { color: #004080; }
+table, td, th { border: 1px solid gray; border-collapse: collapse; padding: 6px; }
+.correct { color: green; }
+.wrong { color: red; }
+</style>
+<script>
+function finishTest(form) {
+  let total = 0;
+  let results = [];
+
+  let radios = document.getElementsByName("q1");
+  let q1 = 0;
+  for (let r of radios) if (r.checked) q1 = parseInt(r.value);
+  total += q1;
+  results.push(["1. Столиця України?", getSelectedText(radios), q1]);
+
+  let radios2 = document.getElementsByName("q2");
+  let q2 = 0;
+  for (let r of radios2) if (r.checked) q2 = parseInt(r.value);
+  total += q2;
+  results.push(["2. Скільки буде 2+2?", getSelectedText(radios2), q2]);
+
+  let check3 = document.getElementsByName("q3");
+  let selected3 = getCheckedValues(check3);
+  let correct3 = ["apple", "banana"];
+  let q3 = scoreMultiple(selected3, correct3);
+  total += q3;
+  results.push(["3. Виберіть фрукти", selected3.join(", "), q3]);
+
+  let check4 = document.getElementsByName("q4");
+  let selected4 = getCheckedValues(check4);
+  let correct4 = ["cat", "dog"];
+  let q4 = scoreMultiple(selected4, correct4);
+  total += q4;
+  results.push(["4. Виберіть тварин", selected4.join(", "), q4]);
+
+  let s5 = document.getElementById("q5");
+  let val5 = s5.value;
+  let q5 = val5 === "3" ? 1 : 0;
+  total += q5;
+  results.push(["5. Яка мова працює в браузері?", s5.options[s5.selectedIndex].text, q5]);
+
+  let s6 = document.getElementById("q6");
+  let selected6 = Array.from(s6.selectedOptions).map(o => o.value);
+  let correct6 = ["html","css"];
+  let q6 = scoreMultiple(selected6, correct6);
+  total += q6;
+  results.push(["6. Виберіть мови для веб-розробки", selected6.join(", "), q6]);
+
+  let txt = document.getElementById("q7").value.trim().toLowerCase();
+  let q7 = (txt === "javascript") ? 1 : 0;
+  total += q7;
+  results.push(["7. Введіть мову для DOM", txt, q7]);
+
+  let out = "<h3>Результати:</h3><table><tr><th>Запитання</th><th>Відповідь</th><th>Бали</th></tr>";
+  results.forEach(r => out += `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`);
+  out += `</table><h3>Загальний бал: ${total} із 10</h3>`;
+  document.getElementById("result").innerHTML = out;
+}
+
+function getSelectedText(radios) {
+  for (let r of radios) if (r.checked) return r.nextSibling.textContent.trim();
+  return "—";
+}
+function getCheckedValues(checkboxes) {
+  let arr = [];
+  for (let c of checkboxes) if (c.checked) arr.push(c.value);
+  return arr;
+}
+function scoreMultiple(selected, correct) {
+  if (selected.length < 2 || selected.length > 2) return 0;
+  let score = 0;
+  for (let s of selected) if (correct.includes(s)) score++;
+  return score;
+}
+</script>
+</head>
+<body>
+<h2>Тест з JavaScript (7 запитань)</h2>
+
+<form name="quiz">
+  <p><b>1. Столиця України?</b><br>
+  <input type="radio" name="q1" value="1"> Київ<br>
+  <input type="radio" name="q1" value="0"> Львів<br>
+  <input type="radio" name="q1" value="0"> Харків<br>
+  <input type="radio" name="q1" value="0"> Одеса</p>
+
+  <p><b>2. Скільки буде 2 + 2?</b><br>
+  <input type="radio" name="q2" value="0"> 3<br>
+  <input type="radio" name="q2" value="1"> 4<br>
+  <input type="radio" name="q2" value="0"> 5<br>
+  <input type="radio" name="q2" value="0"> 22</p>
+
+  <p><b>3. Виберіть фрукти</b><br>
+  <input type="checkbox" name="q3" value="apple"> apple<br>
+  <input type="checkbox" name="q3" value="banana"> banana<br>
+  <input type="checkbox" name="q3" value="carrot"> carrot<br>
+  <input type="checkbox" name="q3" value="potato"> potato</p>
+
+  <p><b>4. Виберіть тварин</b><br>
+  <input type="checkbox" name="q4" value="cat"> cat<br>
+  <input type="checkbox" name="q4" value="dog"> dog<br>
+  <input type="checkbox" name="q4" value="car"> car<br>
+  <input type="checkbox" name="q4" value="tree"> tree</p>
+
+  <p><b>5. Яка мова працює в браузері?</b><br>
+  <select id="q5">
+    <option value="1">Python</option>
+    <option value="2">C++</option>
+    <option value="3">JavaScript</option>
+    <option value="4">Java</option>
+  </select></p>
+
+  <p><b>6. Виберіть мови для веб-розробки</b><br>
+  <select id="q6" multiple size="4">
+    <option value="html">HTML</option>
+    <option value="css">CSS</option>
+    <option value="python">Python</option>
+    <option value="c">C</option>
+  </select></p>
+
+  <p><b>7. Введіть мову для роботи з DOM:</b><br>
+  <input type="text" id="q7"></p>
+
+  <button type="button" onclick="finishTest(this.form)">Завершити тестування</button>
+</form>
+
+<div id="result"></div>
+</body>
+</html>

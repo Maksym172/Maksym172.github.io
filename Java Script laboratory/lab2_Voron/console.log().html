@@ -31,27 +31,23 @@
   <p>👉 Відкрий <b>DevTools → Console</b> (F12) і натискай кнопки.</p>
 
   <script>
-    // Вивід остачі від ділення
     function printRemainder(){
       const a = Number(document.getElementById('a').value);
       const b = Number(document.getElementById('b').value);
       console.log("Остача від ділення %d на %d = %d", a, b, a % b);
     }
 
-    // Перевірка чи ділиться без остачі
     function printIsDivisible(){
       const a = Number(document.getElementById('a').value);
       const b = Number(document.getElementById('b').value);
       console.log("Чи %d ділиться на %d без остачі? %s", a, b, (a % b === 0));
     }
 
-    // Приклад з масивом
     function printArrayFormats(){
       let arr = [10, 20, 30];
       console.log("Значення масиву: %d, %d, %d", arr[0], arr[1], arr[2]);
       console.log("Перший елемент масиву як рядок: %s", arr[0]);
 
-      // приклад з конкатенацією і комами
       let a1 = 5;
       console.log("a1="+a1);
       console.log("a1=", a1);

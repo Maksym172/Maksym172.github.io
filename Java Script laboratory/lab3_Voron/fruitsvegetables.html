@@ -2,37 +2,42 @@
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
-<title>Дерево ієрархії</title>
+<title>Завдання 6 — Дерево ієрархії</title>
 <style>
-ul { list-style: none; cursor: pointer; }
-li { margin-left: 20px; }
+ul { list-style: none; }
+li a {
+  text-decoration: none;
+  color: blue;
+  cursor: pointer;
+}
+.hidden { display: none; }
 </style>
 <script>
-function toggle(el){
-  const child = el.nextElementSibling;
-  if (child.style.display === "none") child.style.display = "block";
-  else child.style.display = "none";
+function toggle(id) {
+  let el = document.getElementById(id);
+  el.classList.toggle('hidden');
 }
 </script>
 </head>
 <body>
-<h2>Ієрархічне дерево</h2>
-<ul>
-  <li onclick="toggle(this)">fruits</li>
-  <ul>
-    <li>apple</li>
-    <li>pineapple</li>
-    <li>apricot</li>
-    <li>pear</li>
-    <li>lemon</li>
-  </ul>
-  <li onclick="toggle(this)">vegetables</li>
-  <ul>
-    <li>potatoes</li>
-    <li>beetroot</li>
-    <li>carrots</li>
-    <li>pear</li>
-  </ul>
+
+<a onclick="toggle('fruitsList')">fruits</a>
+<ul id="fruitsList">
+  <li>apple;</li>
+  <li>pineapple;</li>
+  <li>apricot;</li>
+  <li>pear;</li>
+  <li>lemon;</li>
 </ul>
+
+<a onclick="toggle('vegetablesList')">vegetables</a>
+<ul id="vegetablesList">
+  <li>potatoes;</li>
+  <li>beetroot;</li>
+  <li>carrots;</li>
+  <li>pear;</li>
+</ul>
+
+<p>Натискання на посилання згортає або розгортає перелік під-розділів.</p>
 </body>
 </html>
