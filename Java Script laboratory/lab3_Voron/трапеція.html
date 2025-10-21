@@ -2,48 +2,29 @@
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
-<title>Математичний тест</title>
+<title>Площа трапеції</title>
 <script>
-let correct = 0, total = 0, x, y, op, answer;
-
-function newTask(){
-  x = Math.floor(Math.random()*10);
-  y = Math.floor(Math.random()*10);
-  const ops = ["+","-","*","/"];
-  op = ops[Math.floor(Math.random()*4)];
-  if(op==="/") y = y===0?1:y;
-  document.getElementById("task").innerText = `${x} ${op} ${y} = ?`;
-  document.getElementById("result").innerText = "";
-  document.getElementById("input").value = "";
-}
-
-function check(){
-  total++;
-  let input = document.getElementById("input").value;
-  switch(op){
-    case "+": answer = x+y; break;
-    case "-": answer = x-y; break;
-    case "*": answer = x*y; break;
-    case "/": answer = +(x/y).toFixed(1); break;
-  }
-  if(+input === answer){
-    correct++;
-    document.getElementById("result").innerText = "✅ Правильно!";
+function calcArea() {
+  let a = parseFloat(document.getElementById("a").value);
+  let b = parseFloat(document.getElementById("b").value);
+  let h = parseFloat(document.getElementById("h").value);
+  if (!isNaN(a) && !isNaN(b) && !isNaN(h)) {
+    let s = ((a + b) / 2) * h;
+    document.getElementById("result").value = s.toFixed(2);
   } else {
-    document.getElementById("result").innerText = `❌ Помилка, правильна відповідь ${answer}`;
+    document.getElementById("result").value = "";
   }
-  document.getElementById("score").innerText = 
-    `Рахунок: ${correct} з ${total} (${Math.round(correct/total*100)}%)`;
 }
 </script>
 </head>
-<body onload="newTask()">
-<h2>Перевірка знань арифметики</h2>
-<div id="score">Рахунок: 0 з 0</div><br>
-<div id="task"></div>
-<input type="number" id="input">
-<button onclick="check()">Перевірити</button>
-<button onclick="newTask()">Наступне</button>
-<p id="result"></p>
+<body>
+<h2>Розрахунок площі трапеції</h2>
+
+<p>Введіть параметри:</p>
+Основа a: <input type="number" id="a" oninput="calcArea()"><br><br>
+Основа b: <input type="number" id="b" oninput="calcArea()"><br><br>
+Висота h: <input type="number" id="h" oninput="calcArea()"><br><br>
+
+Площа: <input type="text" id="result" readonly>
 </body>
 </html>
