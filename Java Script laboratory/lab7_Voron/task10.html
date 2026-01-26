@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Завдання 10 — Видалити всі голосні</h2>
+
+<input id="inp" type="text" placeholder="Введіть рядок">
+<button onclick="run()">Видалити</button>
+
+<p id="result"></p>
+
+<script>
+function run() {
+    let str = document.getElementById("inp").value;
+    document.getElementById("result").innerText =
+        str.replace(/[aeiouаеєиіїоуюя]/gi, "");
+}
+</script>
+</body>
+</html>

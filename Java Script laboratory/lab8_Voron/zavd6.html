@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна 8 - Завдання 6 (Варіант 7)</title>
+</head>
+<body>
+
+    <h1>Завдання 6, Варіант 7: Product та DiscountProduct</h1>
+    
+    <div class="container">
+
+        <h2>Товар</h2>
+
+        <div class="form-group">
+            <label for="p-name">Назва продукту:</label><br>
+            <input type="text" id="p-name" placeholder="Наприклад: Ноутбук">
+        </div>
+        <br>
+
+        <div class="form-group">
+            <label for="p-price">Ціна (грн):</label><br>
+            <input type="number" id="p-price" placeholder="10000">
+        </div>
+        <br>
+
+        <div class="form-group">
+            <label for="p-quantity">Кількість:</label><br>
+            <input type="number" id="p-quantity" placeholder="2">
+        </div>
+        <br>
+
+        <h2>Товар зі знижкою</h2>
+
+        <div class="form-group">
+            <label for="dp-name">Назва продукту:</label><br>
+            <input type="text" id="dp-name" placeholder="Телефон">
+        </div>
+        <br>
+
+        <div class="form-group">
+            <label for="dp-price">Ціна (грн):</label><br>
+            <input type="number" id="dp-price" placeholder="15000">
+        </div>
+        <br>
+
+        <div class="form-group">
+            <label for="dp-quantity">Кількість:</label><br>
+            <input type="number" id="dp-quantity" placeholder="1">
+        </div>
+        <br>
+
+        <div class="form-group">
+            <label for="dp-discount">Знижка (%):</label><br>
+            <input type="number" id="dp-discount" placeholder="10">
+        </div>
+        <br>
+
+        <button id="showButton">Показати інформацію</button>
+        <button id="clearButton">Очистити поля</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        class Product {
+
+            static currency = "грн"; // статичне поле
+
+            constructor(name, price, quantity) {
+                this.name = name;
+                this.price = Number(price);
+                this.quantity = Number(quantity);
+            }
+
+            totalCost() {
+                return this.price * this.quantity;
+            }
+
+            getInfo() {
+                return `Продукт: ${this.name}, Ціна: ${this.price} ${Product.currency}, Кількість: ${this.quantity}, Загалом: ${this.totalCost()} ${Product.currency}`;
+            }
+        }
+
+        class DiscountProduct extends Product {
+
+            constructor(name, price, quantity, discount) {
+                super(name, price, quantity);
+                this.discount = Number(discount);
+            }
+
+            getDiscountedPrice() {
+                return this.price - (this.price * this.discount / 100);
+            }
+
+            getInfo() {
+                return `Продукт зі знижкою: ${this.name}, Початкова ціна: ${this.price} ${Product.currency}, Знижка: ${this.discount}%, Нова ціна: ${this.getDiscountedPrice()} ${Product.currency}, Кількість: ${this.quantity}, До оплати: ${(this.getDiscountedPrice() * this.quantity).toFixed(2)} ${Product.currency}`;
+            }
+        }
+
+        const showButton = document.getElementById('showButton');
+        const clearButton = document.getElementById('clearButton');
+        const resultElement = document.getElementById('result');
+
+        showButton.addEventListener('click', function () {
+
+            const pName = document.getElementById("p-name").value;
+            const pPrice = document.getElementById("p-price").value;
+            const pQty = document.getElementById("p-quantity").value;
+
+            const dpName = document.getElementById("dp-name").value;
+            const dpPrice = document.getElementById("dp-price").value;
+            const dpQty = document.getElementById("dp-quantity").value;
+            const dpDiscount = document.getElementById("dp-discount").value;
+
+            const product = new Product(pName, pPrice, pQty);
+            const discountProduct = new DiscountProduct(dpName, dpPrice, dpQty, dpDiscount);
+
+            resultElement.innerHTML = `
+                <p><b>Товар:</b> ${product.getInfo()}</p>
+                <hr>
+                <p><b>Товар зі знижкою:</b> ${discountProduct.getInfo()}</p>
+            `;
+        });
+
+        clearButton.addEventListener('click', function () {
+
+            document.querySelectorAll("input").forEach(input => input.value = "");
+            resultElement.innerHTML = "";
+        });
+    </script>
+
+</body>
+</html>

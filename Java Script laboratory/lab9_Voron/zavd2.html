@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Анімований логотип ІПЗ — Matrix Style</title>
+    <style>
+        body {
+            background: #000;
+            color: #00ff9d;
+            font-family: Consolas, monospace;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        #container {
+            margin-top: 50px;
+            position: relative;
+            width: 100%;
+            height: 500px;
+        }
+
+
+        #logo {
+            position: absolute;
+            top: 80px;
+            left: calc(50% - 180px);
+            width: 360px;
+            height: 360px;
+            opacity: 0;
+        }
+
+        #text {
+            font-size: 30px;
+            letter-spacing: 2px;
+            margin-top: 330px;
+            opacity: 0;
+            color: #00ffaa;
+            text-shadow: 0 0 10px #00ff9d;
+        }
+
+        .digit {
+            position: absolute;
+            font-size: 20px;
+            color: #00ff9d;
+            opacity: 0;
+            text-shadow: 0 0 10px #00ff9d;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        @keyframes moveCircle {
+            0% { transform: translateX(-220px) scale(0.5); }
+            50% { transform: translateX(220px) scale(1.4); }
+            100% { transform: translateX(0px) scale(1); }
+        }
+
+        @keyframes spinCircle {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes matrixFall {
+            from { top: -50px; opacity: 1; }
+            to { top: 500px; opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<h1 style="color:white; text-shadow:0 0 20px #00ff9d;">Matrix Logo — ІПЗ</h1>
+<button id="toggle">Запустити анімацію</button>
+
+<div id="container">
+    <div id="logo">
+
+        <svg width="360" height="360" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+
+            <defs>
+                <radialGradient id="bg-grad" cx="50%" cy="50%" r="65%">
+                    <stop offset="0%" stop-color="#002a1a"/>
+                    <stop offset="100%" stop-color="#000000"/>
+                </radialGradient>
+
+                <linearGradient id="neon-grad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#00ffc8"/>
+                    <stop offset="100%" stop-color="#00a377"/>
+                </linearGradient>
+
+                <pattern id="matrix" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <text x="0" y="14" font-size="16" fill="#00ff9a" font-family="monospace">1</text>
+                    <text x="10" y="14" font-size="16" fill="#00ff9a" font-family="monospace">0</text>
+                </pattern>
+
+                <filter id="glow">
+                    <feGaussianBlur stdDeviation="4" result="blur"/>
+                    <feMerge>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+
+            <circle cx="180" cy="180" r="170" fill="url(#bg-grad)" stroke="url(#neon-grad)" stroke-width="6" filter="url(#glow)"/>
+
+            <circle cx="180" cy="180" r="130" fill="none" stroke="url(#matrix)" stroke-width="14" opacity="0.35"/>
+
+            <g stroke="url(#neon-grad)" stroke-width="6" stroke-linecap="round">
+                <path d="M60 180 H30 V130" />
+                <circle cx="30" cy="130" r="9" fill="#00ffc8"/>
+
+                <path d="M300 180 H330 V230" />
+                <circle cx="330" cy="230" r="9" fill="#00ffc8"/>
+
+                <path d="M180 60 V30 H220" />
+                <circle cx="220" cy="30" r="9" fill="#00ffc8"/>
+
+                <path d="M180 300 V330 H140" />
+                <circle cx="140" cy="330" r="9" fill="#00ffc8"/>
+            </g>
+
+            <text 
+                x="50%" y="54%" text-anchor="middle"
+                font-family="Montserrat" font-size="110"
+                font-weight="900"
+                fill="url(#neon-grad)"
+                filter="url(#glow)"
+                style="letter-spacing:10px;">
+                ІПЗ
+            </text>
+
+            <text 
+                x="50%" y="72%" text-anchor="middle"
+                font-family="Orbitron" font-size="26"
+                fill="#00ffbf" opacity="0.9">
+                SOFTWARE ENGINEERING
+            </text>
+
+        </svg>
+    </div>
+
+    <div id="text"></div>
+</div>
+
+<script>
+    let running = false;
+    let intervalDigits;
+    let intervalText;
+
+    const logo = document.getElementById("logo");
+    const text = document.getElementById("text");
+    const button = document.getElementById("toggle");
+
+    const words = ["1", "0", "01", "10", "101", "001", "110", "1001", "0101"];
+    const title = "Інженерія програмного забезпечення";
+
+    let index = 0;
+    let reverse = false;
+
+    function startAnimation() {
+        running = true;
+        button.textContent = "Зупинити анімацію";
+
+        logo.style.opacity = 1;
+        logo.style.animation = "moveCircle 4s infinite alternate, spinCircle 12s linear infinite";
+
+        text.style.opacity = 1;
+        text.textContent = "";
+
+        intervalText = setInterval(() => {
+            if (!reverse) {
+                if (index < title.length) {
+                    text.textContent += title[index++];
+                } else {
+                    reverse = true;
+                }
+            } else {
+                text.textContent = text.textContent.slice(0, -1);
+                if (text.textContent.length === 0) {
+                    reverse = false;
+                    index = 0;
+                }
+            }
+        }, 100);
+
+        intervalDigits = setInterval(() => {
+            const d = document.createElement("div");
+            d.className = "digit";
+            d.innerText = words[Math.floor(Math.random() * words.length)];
+
+            d.style.left = Math.random() * window.innerWidth + "px";
+            d.style.top = "-20px";
+            d.style.opacity = 1;
+            d.style.animation = "matrixFall 2.5s linear forwards";
+
+            document.getElementById("container").appendChild(d);
+
+            setTimeout(() => d.remove(), 2600);
+
+        }, 120);
+    }
+
+    function stopAnimation() {
+        running = false;
+        button.textContent = "Запустити анімацію";
+
+        logo.style.animation = "none";
+        logo.style.opacity = 0;
+
+        text.style.opacity = 0;
+
+        clearInterval(intervalDigits);
+        clearInterval(intervalText);
+
+        document.querySelectorAll(".digit").forEach(d => d.remove());
+    }
+
+    button.addEventListener("click", () => {
+        running ? stopAnimation() : startAnimation();
+    });
+</script>
+
+</body>
+</html>

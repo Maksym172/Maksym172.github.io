@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Завдання 6 — Перевірка спаму</h2>
+
+<input id="inp" type="text" placeholder="Введіть рядок">
+<button onclick="run()">Перевірити</button>
+
+<p id="result"></p>
+
+<script>
+function run() {
+    let str = document.getElementById("inp").value.toLowerCase();
+    let spam = [
+        "100% безкоштовно",
+        "збільшення продажів",
+        "тільки сьогодні",
+        "не видаляйте"
+    ];
+    let isSpam = spam.some(s => str.includes(s));
+    document.getElementById("result").innerText = "Спам: " + isSpam;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Завдання 3 — Знайти індекс символа</h2>
+
+<input id="inp" type="text" placeholder="Введіть рядок">
+<input id="char" type="text" maxlength="1" placeholder="Символ">
+<button onclick="run()">Шукати</button>
+
+<p id="result"></p>
+
+<script>
+function run() {
+    let str = document.getElementById("inp").value;
+    let c = document.getElementById("char").value;
+    document.getElementById("result").innerText = "Індекс: " + str.indexOf(c);
+}
+</script>
+</body>
+</html>

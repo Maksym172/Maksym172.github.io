@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Завдання 5 — Поміняти сусідні символи</h2>
+
+<input id="inp" type="text" placeholder="Введіть рядок">
+<button onclick="run()">Замінити</button>
+
+<p id="result"></p>
+
+<script>
+function run() {
+    let str = document.getElementById("inp").value;
+    let res = "";
+    for (let i = 0; i < str.length; i += 2) {
+        let a = str[i];
+        let b = str[i + 1] || "";
+        res += b + a;
+    }
+    document.getElementById("result").innerText = res;
+}
+</script>
+</body>
+</html>

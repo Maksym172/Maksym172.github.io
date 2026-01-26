@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Завдання 9 — Сортувати слова за довжиною</h2>
+
+<input id="inp" type="text" placeholder="Введіть слова">
+<button onclick="run()">Сортувати</button>
+
+<p id="result"></p>
+
+<script>
+function run() {
+    let str = document.getElementById("inp").value;
+    let sorted = str
+        .split(" ")
+        .sort((a, b) => a.length - b.length || a.localeCompare(b))
+        .join(" ");
+    document.getElementById("result").innerText = sorted;
+}
+</script>
+</body>
+</html>

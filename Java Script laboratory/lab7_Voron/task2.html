@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Завдання 2 — Верхній і нижній регістр</h2>
+
+<input id="inp" type="text" placeholder="Введіть рядок">
+<button onclick="run()">Виконати</button>
+
+<p id="result"></p>
+
+<script>
+function run() {
+    let str = document.getElementById("inp").value;
+    document.getElementById("result").innerHTML =
+        "Upper: " + str.toUpperCase() + "<br>" +
+        "Lower: " + str.toLowerCase();
+}
+</script>
+</body>
+</html>

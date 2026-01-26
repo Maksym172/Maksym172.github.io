@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Завдання 4 — Кількість входжень символа</h2>
+
+<input id="inp" type="text" placeholder="Введіть рядок">
+<input id="char" type="text" maxlength="1" placeholder="Символ">
+<button onclick="run()">Порахувати</button>
+
+<p id="result"></p>
+
+<script>
+function run() {
+    let str = document.getElementById("inp").value;
+    let c = document.getElementById("char").value;
+    let count = (str.match(new RegExp(c, "g")) || []).length;
+    document.getElementById("result").innerText = "Кількість: " + count;
+}
+</script>
+</body>
+</html>

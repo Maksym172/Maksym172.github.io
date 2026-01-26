@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Завдання 8 — Слова у зворотному порядку</h2>
+
+<input id="inp" type="text" placeholder="Введіть рядок">
+<button onclick="run()">Перевернути</button>
+
+<p id="result"></p>
+
+<script>
+function run() {
+    let str = document.getElementById("inp").value;
+    document.getElementById("result").innerText =
+        str.split(" ").reverse().join(" ");
+}
+</script>
+</body>
+</html>

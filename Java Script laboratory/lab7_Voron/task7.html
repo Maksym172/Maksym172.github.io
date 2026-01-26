@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Завдання 7 — Скорочення рядка</h2>
+
+<input id="inp" type="text" placeholder="Введіть рядок">
+<input id="len" type="number" placeholder="Максимальна довжина">
+<button onclick="run()">Скоротити</button>
+
+<p id="result"></p>
+
+<script>
+function run() {
+    let str = document.getElementById("inp").value;
+    let max = Number(document.getElementById("len").value);
+
+    if (str.length <= max) {
+        document.getElementById("result").innerText = str;
+    } else {
+        document.getElementById("result").innerText =
+            str.slice(0, max - 3) + "...";
+    }
+}
+</script>
+</body>
+</html>

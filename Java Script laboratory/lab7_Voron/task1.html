@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Завдання 1 — Довжина рядка</h2>
+
+<input id="inp" type="text" placeholder="Введіть рядок">
+<button onclick="run()">Обчислити</button>
+
+<p id="result"></p>
+
+<script>
+function run() {
+    let str = document.getElementById("inp").value;
+    document.getElementById("result").innerText = "Довжина: " + str.length;
+}
+</script>
+</body>
+</html>
